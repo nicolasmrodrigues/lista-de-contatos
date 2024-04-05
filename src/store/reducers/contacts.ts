@@ -41,7 +41,7 @@ const contactsSlice = createSlice({
         email: action.payload.email,
         id: state.items.length + 1
       }
-      state.items = [...state.items, contactToAdd]
+      state.items.push(contactToAdd)
     },
     deleteContact: (state, action: PayloadAction<number>) => {
       state.items.splice(action.payload - 1, 1)

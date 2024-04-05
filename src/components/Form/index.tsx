@@ -1,7 +1,8 @@
 import { FormEvent, useState } from 'react'
-import { Title, Form as FormStyle, InputField, SubmitButton } from './styles'
 import { useDispatch } from 'react-redux'
+import { Title, Form as FormStyle } from './styles'
 import { addContact } from '../../store/reducers/contacts'
+import { Button, InputField } from '../../styles'
 
 const Form = () => {
   const [name, setName] = useState('')
@@ -50,7 +51,7 @@ const Form = () => {
           placeholder="Email"
           required
         />
-        <SubmitButton type="submit">Adicionar</SubmitButton>
+        <Button type="submit">Adicionar</Button>
       </FormStyle>
     </>
   )

@@ -1,4 +1,3 @@
-import { IoIosContact } from 'react-icons/io'
 import { HiOutlinePencilAlt } from 'react-icons/hi'
 import { IoMdTrash } from 'react-icons/io'
 import ContactClass from '../../models/Contact'
@@ -13,17 +12,21 @@ import {
 } from './styles'
 import { useDispatch } from 'react-redux'
 import { deleteContact } from '../../store/reducers/contacts'
+import { useState } from 'react'
+import { ContactIcon } from '../../styles'
 
 type Props = ContactClass
 
 const Contact = ({ name, phone, email, id }: Props) => {
+  const [isEditing, setIsEditing] = useState(false)
+
   const dispatch = useDispatch()
 
   return (
     <ContactStyle>
       <ContactInfo>
         <div>
-          <IoIosContact id="contact-icon" />
+          <ContactIcon />
         </div>
         <InfoList>
           <Info id="name">{name}</Info>
@@ -32,7 +35,7 @@ const Contact = ({ name, phone, email, id }: Props) => {
         </InfoList>
       </ContactInfo>
       <ContactActions>
-        <EditButton>
+        <EditButton to="/edit" onClick={() => setIsEditing(true)}>
           <HiOutlinePencilAlt />
         </EditButton>
         <DeleteButton onClick={() => dispatch(deleteContact(id))}>

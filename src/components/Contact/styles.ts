@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const Contact = styled.div`
@@ -10,12 +11,6 @@ export const Contact = styled.div`
   box-shadow:
     0 2px 3px rgba(10, 10, 10, 0.1),
     0 0 0 1px rgba(10, 10, 10, 0.1);
-
-  #contact-icon {
-    color: #a9a9a9;
-    font-size: 96px;
-    margin-right: 16px;
-  }
 `
 
 export const ContactInfo = styled.div`
@@ -55,7 +50,15 @@ export const DeleteButton = styled.button`
   }
 `
 
-export const EditButton = styled(DeleteButton)`
+export const EditButton = styled(Link)`
+  display: block;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  color: #e74c3c;
+  font-size: 32px;
+  padding: 4px;
   color: #f1c40f;
   &:hover {
     color: #f39c12;
