@@ -6,6 +6,7 @@ export const Contact = styled.div`
   border-radius: 4px;
   padding: 16px;
   align-items: center;
+  margin-bottom: 16px;
   box-shadow:
     0 2px 3px rgba(10, 10, 10, 0.1),
     0 0 0 1px rgba(10, 10, 10, 0.1);
