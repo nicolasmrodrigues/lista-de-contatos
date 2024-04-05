@@ -11,30 +11,36 @@ import {
   ContactInfo,
   ContactActions
 } from './styles'
+import { useDispatch } from 'react-redux'
+import { deleteContact } from '../../store/reducers/contacts'
 
 type Props = ContactClass
 
-const Contact = ({ name, phone, email, id }: Props) => (
-  <ContactStyle>
-    <ContactInfo>
-      <div>
-        <IoIosContact id="contact-icon" />
-      </div>
-      <InfoList>
-        <Info id="name">{name}</Info>
-        <Info id="phone">{phone}</Info>
-        <Info id="email">{email}</Info>
-      </InfoList>
-    </ContactInfo>
-    <ContactActions>
-      <EditButton>
-        <HiOutlinePencilAlt />
-      </EditButton>
-      <DeleteButton>
-        <IoMdTrash />
-      </DeleteButton>
-    </ContactActions>
-  </ContactStyle>
-)
+const Contact = ({ name, phone, email, id }: Props) => {
+  const dispatch = useDispatch()
+
+  return (
+    <ContactStyle>
+      <ContactInfo>
+        <div>
+          <IoIosContact id="contact-icon" />
+        </div>
+        <InfoList>
+          <Info id="name">{name}</Info>
+          <Info id="phone">{phone}</Info>
+          <Info id="email">{email}</Info>
+        </InfoList>
+      </ContactInfo>
+      <ContactActions>
+        <EditButton>
+          <HiOutlinePencilAlt />
+        </EditButton>
+        <DeleteButton onClick={() => dispatch(deleteContact(id))}>
+          <IoMdTrash />
+        </DeleteButton>
+      </ContactActions>
+    </ContactStyle>
+  )
+}
 
 export default Contact

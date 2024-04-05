@@ -42,9 +42,17 @@ const contactsSlice = createSlice({
         id: state.items.length + 1
       }
       state.items = [...state.items, contactToAdd]
+    },
+    deleteContact: (state, action: PayloadAction<number>) => {
+      state.items.splice(action.payload - 1, 1)
+      let id = 1
+      state.items.map((contact) => {
+        contact.id = id
+        id++
+      })
     }
   }
 })
 
-export const { addContact } = contactsSlice.actions
+export const { addContact, deleteContact } = contactsSlice.actions
 export default contactsSlice.reducer

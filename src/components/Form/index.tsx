@@ -1,15 +1,12 @@
 import { FormEvent, useState } from 'react'
 import { Title, Form as FormStyle, InputField, SubmitButton } from './styles'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
+import { useDispatch } from 'react-redux'
 import { addContact } from '../../store/reducers/contacts'
 
 const Form = () => {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
-
-  const { items } = useSelector((state: RootReducer) => state.contacts)
 
   const dispatch = useDispatch()
 
@@ -27,8 +24,6 @@ const Form = () => {
     setPhone('')
     setEmail('')
   }
-
-  items.map((item) => console.log(item))
 
   return (
     <>
