@@ -17,6 +17,13 @@ export const Form = styled.form`
   input {
     width: 100%;
   }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 8px 16px;
+  }
 `
 
 export const InputsContainer = styled.div`
@@ -24,6 +31,7 @@ export const InputsContainer = styled.div`
 `
 
 export const SaveButton = styled(Button)`
+  padding: 0;
   margin: 24px 16px 0 0;
   background-color: #2ecc71;
   &:hover {
@@ -32,6 +40,7 @@ export const SaveButton = styled(Button)`
 `
 
 export const CancelButton = styled(Button)`
+  padding: 0;
   text-decoration: none;
   background-color: #e74c3c;
 

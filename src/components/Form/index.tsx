@@ -1,13 +1,16 @@
-import { FormEvent, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { FormEvent } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Title, Form as FormStyle } from './styles'
-import { addContact } from '../../store/reducers/contacts'
+import { addContact, updateInputValue } from '../../store/reducers/contacts'
 import { Button, InputField } from '../../styles'
+import { RootReducer } from '../../store'
 
 const Form = () => {
-  const [name, setName] = useState('')
-  const [phone, setPhone] = useState('')
-  const [email, setEmail] = useState('')
+  const {
+    inputName: name,
+    inputPhone: phone,
+    inputEmail: email
+  } = useSelector((state: RootReducer) => state.contacts)
 
   const dispatch = useDispatch()
 
@@ -21,9 +24,13 @@ const Form = () => {
         email
       })
     )
-    setName('')
-    setPhone('')
-    setEmail('')
+
+    dispatch(
+      updateInputValue({
+        inputToUpdate: 'all',
+        newValue: ''
+      })
+    )
   }
 
   return (
@@ -32,21 +39,42 @@ const Form = () => {
       <FormStyle onSubmit={submitContact}>
         <InputField
           value={name}
-          onChange={({ target }) => setName(target.value)}
+          onChange={({ target }) =>
+            dispatch(
+              updateInputValue({
+                inputToUpdate: 'name',
+                newValue: target.value
+              })
+            )
+          }
           type="text"
           placeholder="Nome"
           required
         />
         <InputField
           value={phone}
-          onChange={({ target }) => setPhone(target.value)}
+          onChange={({ target }) =>
+            dispatch(
+              updateInputValue({
+                inputToUpdate: 'phone',
+                newValue: target.value
+              })
+            )
+          }
           type="text"
           placeholder="Telefone"
           required
         />
         <InputField
           value={email}
-          onChange={({ target }) => setEmail(target.value)}
+          onChange={({ target }) =>
+            dispatch(
+              updateInputValue({
+                inputToUpdate: 'email',
+                newValue: target.value
+              })
+            )
+          }
           type="text"
           placeholder="Email"
           required

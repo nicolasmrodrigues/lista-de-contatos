@@ -1,11 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import Contact from '../../models/Contact'
 
+type ContactWithoutId = Omit<Contact, 'id'>
+
 type ContactsState = {
   items: Contact[]
+  inputName: string
+  inputPhone: string
+  inputEmail: string
+  idOfEditingContact: number
 }
-
-type ContactWithoutId = Omit<Contact, 'id'>
 
 const initialState: ContactsState = {
   items: [
@@ -27,7 +31,11 @@ const initialState: ContactsState = {
       email: 'felipe.lacerda@gmail.com',
       id: 3
     }
-  ]
+  ],
+  inputName: '',
+  inputPhone: '',
+  inputEmail: '',
+  idOfEditingContact: 0
 }
 
 const contactsSlice = createSlice({
@@ -50,9 +58,37 @@ const contactsSlice = createSlice({
         contact.id = id
         id++
       })
+    },
+    editContact: (state, action: PayloadAction<number>) => {
+      state.items[action.payload - 1].name = state.inputName
+      state.items[action.payload - 1].phone = state.inputPhone
+      state.items[action.payload - 1].email = state.inputEmail
+    },
+    updateInputValue: (
+      state,
+      action: PayloadAction<{
+        inputToUpdate: 'name' | 'phone' | 'email' | 'id' | 'all'
+        newValue: string
+      }>
+    ) => {
+      if (action.payload.inputToUpdate === 'name') {
+        state.inputName = action.payload.newValue
+      } else if (action.payload.inputToUpdate === 'phone') {
+        state.inputPhone = action.payload.newValue
+      } else if (action.payload.inputToUpdate === 'email') {
+        state.inputEmail = action.payload.newValue
+      } else if (action.payload.inputToUpdate === 'id') {
+        state.idOfEditingContact = parseInt(action.payload.newValue)
+      } else {
+        state.inputName =
+          state.inputPhone =
+          state.inputEmail =
+            action.payload.newValue
+      }
     }
   }
 })
 
-export const { addContact, deleteContact } = contactsSlice.actions
+export const { addContact, deleteContact, editContact, updateInputValue } =
+  contactsSlice.actions
 export default contactsSlice.reducer

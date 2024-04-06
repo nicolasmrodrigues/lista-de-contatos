@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux'
 import { HiOutlinePencilAlt } from 'react-icons/hi'
 import { IoMdTrash } from 'react-icons/io'
 import ContactClass from '../../models/Contact'
@@ -10,16 +11,12 @@ import {
   ContactInfo,
   ContactActions
 } from './styles'
-import { useDispatch } from 'react-redux'
-import { deleteContact } from '../../store/reducers/contacts'
-import { useState } from 'react'
+import { deleteContact, updateInputValue } from '../../store/reducers/contacts'
 import { ContactIcon } from '../../styles'
 
 type Props = ContactClass
 
 const Contact = ({ name, phone, email, id }: Props) => {
-  const [isEditing, setIsEditing] = useState(false)
-
   const dispatch = useDispatch()
 
   return (
@@ -35,7 +32,38 @@ const Contact = ({ name, phone, email, id }: Props) => {
         </InfoList>
       </ContactInfo>
       <ContactActions>
-        <EditButton to="/edit" onClick={() => setIsEditing(true)}>
+        <EditButton
+          to="/edit"
+          onClick={() => {
+            dispatch(
+              updateInputValue({
+                inputToUpdate: 'name',
+                newValue: name
+              })
+            )
+
+            dispatch(
+              updateInputValue({
+                inputToUpdate: 'phone',
+                newValue: phone
+              })
+            )
+
+            dispatch(
+              updateInputValue({
+                inputToUpdate: 'email',
+                newValue: email
+              })
+            )
+
+            dispatch(
+              updateInputValue({
+                inputToUpdate: 'id',
+                newValue: `${id}`
+              })
+            )
+          }}
+        >
           <HiOutlinePencilAlt />
         </EditButton>
         <DeleteButton onClick={() => dispatch(deleteContact(id))}>
