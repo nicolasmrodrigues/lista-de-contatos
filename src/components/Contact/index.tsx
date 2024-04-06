@@ -19,12 +19,40 @@ type Props = ContactClass
 const Contact = ({ name, phone, email, id }: Props) => {
   const dispatch = useDispatch()
 
+  const updateEditingContactInfo = () => {
+    dispatch(
+      updateInputValue({
+        inputToUpdate: 'name',
+        newValue: name
+      })
+    )
+
+    dispatch(
+      updateInputValue({
+        inputToUpdate: 'phone',
+        newValue: phone
+      })
+    )
+
+    dispatch(
+      updateInputValue({
+        inputToUpdate: 'email',
+        newValue: email
+      })
+    )
+
+    dispatch(
+      updateInputValue({
+        inputToUpdate: 'id',
+        newValue: `${id}`
+      })
+    )
+  }
+
   return (
     <ContactStyle>
       <ContactInfo>
-        <div>
-          <ContactIcon />
-        </div>
+        <ContactIcon />
         <InfoList>
           <Info id="name">{name}</Info>
           <Info id="phone">{phone}</Info>
@@ -32,38 +60,7 @@ const Contact = ({ name, phone, email, id }: Props) => {
         </InfoList>
       </ContactInfo>
       <ContactActions>
-        <EditButton
-          to="/edit"
-          onClick={() => {
-            dispatch(
-              updateInputValue({
-                inputToUpdate: 'name',
-                newValue: name
-              })
-            )
-
-            dispatch(
-              updateInputValue({
-                inputToUpdate: 'phone',
-                newValue: phone
-              })
-            )
-
-            dispatch(
-              updateInputValue({
-                inputToUpdate: 'email',
-                newValue: email
-              })
-            )
-
-            dispatch(
-              updateInputValue({
-                inputToUpdate: 'id',
-                newValue: `${id}`
-              })
-            )
-          }}
-        >
+        <EditButton to="/edit" onClick={updateEditingContactInfo}>
           <HiOutlinePencilAlt />
         </EditButton>
         <DeleteButton onClick={() => dispatch(deleteContact(id))}>

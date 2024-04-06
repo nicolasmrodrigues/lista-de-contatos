@@ -14,6 +14,18 @@ const Form = () => {
 
   const dispatch = useDispatch()
 
+  const updateInput = (
+    inputToUpdate: 'name' | 'phone' | 'email',
+    newValue: string
+  ) => {
+    dispatch(
+      updateInputValue({
+        inputToUpdate,
+        newValue
+      })
+    )
+  }
+
   const submitContact = (event: FormEvent) => {
     event.preventDefault()
 
@@ -39,42 +51,21 @@ const Form = () => {
       <FormStyle onSubmit={submitContact}>
         <InputField
           value={name}
-          onChange={({ target }) =>
-            dispatch(
-              updateInputValue({
-                inputToUpdate: 'name',
-                newValue: target.value
-              })
-            )
-          }
+          onChange={({ target }) => updateInput('name', target.value)}
           type="text"
           placeholder="Nome"
           required
         />
         <InputField
           value={phone}
-          onChange={({ target }) =>
-            dispatch(
-              updateInputValue({
-                inputToUpdate: 'phone',
-                newValue: target.value
-              })
-            )
-          }
+          onChange={({ target }) => updateInput('phone', target.value)}
           type="text"
           placeholder="Telefone"
           required
         />
         <InputField
           value={email}
-          onChange={({ target }) =>
-            dispatch(
-              updateInputValue({
-                inputToUpdate: 'email',
-                newValue: target.value
-              })
-            )
-          }
+          onChange={({ target }) => updateInput('email', target.value)}
           type="text"
           placeholder="Email"
           required
