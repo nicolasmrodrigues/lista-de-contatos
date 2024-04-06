@@ -17,7 +17,6 @@ const EditForm = () => {
   const dispatch = useDispatch()
 
   const cancelEdit = () => {
-    console.log('canceled')
     dispatch(
       updateInputValue({
         inputToUpdate: 'all',
