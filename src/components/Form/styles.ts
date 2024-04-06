@@ -5,5 +5,7 @@ export const Title = styled.h1`
 `
 
 export const Form = styled.form`
+  display: flex;
+  justify-content: space-between;
   margin-top: 48px;
 `

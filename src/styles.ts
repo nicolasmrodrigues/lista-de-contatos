@@ -15,14 +15,14 @@ const GlobalStyle = createGlobalStyle`
 `
 
 export const Container = styled.div`
-  max-width: 968px;
+  max-width: 904px;
   width: 100%;
   margin: 72px auto 0 auto;
 `
 
 export const InputField = styled.input`
   padding: 8px 12px;
-  margin: 0 12px 12px 0;
+  margin-bottom: 12px;
   border: 1px solid #00000026;
   border-radius: 4px;
   color: #464a4c;
@@ -41,10 +41,12 @@ export const ContactIcon = styled(IoIosContact)`
 export const Button = styled.button`
   padding: 8px 16px;
   background-color: #0275d8;
+  margin-bottom: 12px;
   color: #fff;
   border: none;
   border-radius: 4px;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color linear 0.08s;
   box-shadow:

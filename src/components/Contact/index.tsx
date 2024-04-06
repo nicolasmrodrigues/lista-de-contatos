@@ -9,7 +9,8 @@ import {
   Info,
   InfoList,
   ContactInfo,
-  ContactActions
+  ContactActions,
+  ContactNumber
 } from './styles'
 import { deleteContact, updateInputValue } from '../../store/reducers/contacts'
 import { ContactIcon } from '../../styles'
@@ -51,6 +52,7 @@ const Contact = ({ name, phone, email, id }: Props) => {
 
   return (
     <ContactStyle>
+      <ContactNumber>{id}</ContactNumber>
       <ContactInfo>
         <ContactIcon />
         <InfoList>

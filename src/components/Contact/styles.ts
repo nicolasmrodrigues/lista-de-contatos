@@ -5,7 +5,7 @@ export const Contact = styled.div`
   display: flex;
   background-color: #fff;
   border-radius: 4px;
-  padding: 16px;
+  padding: 16px 16px 16px 24px;
   align-items: center;
   margin-bottom: 16px;
   box-shadow:
@@ -67,4 +67,8 @@ export const EditButton = styled(Link)`
 
 export const ContactActions = styled.div`
   margin-left: auto;
+`
+
+export const ContactNumber = styled.span`
+  margin-right: 16px;
 `

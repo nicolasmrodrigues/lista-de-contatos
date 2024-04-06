@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom'
 import { ContactIcon, InputField } from '../../styles'
 import { CancelButton, Form, InputsContainer, SaveButton } from './styles'
 import { RootReducer } from '../../store'
-import { editContact, updateInputValue } from '../../store/reducers/contacts'
+import {
+  addContact,
+  editContact,
+  updateInputValue
+} from '../../store/reducers/contacts'
 
 const EditForm = () => {
   const {
@@ -40,7 +44,17 @@ const EditForm = () => {
   const saveEdition = (event: FormEvent) => {
     event.preventDefault()
 
-    dispatch(editContact(id))
+    if (id > 0) {
+      dispatch(editContact(id))
+    } else {
+      dispatch(
+        addContact({
+          name,
+          phone,
+          email
+        })
+      )
+    }
 
     dispatch(
       updateInputValue({
